@@ -1,6 +1,5 @@
 package Bex2DGameEngine;
 
-import java.awt.MouseInfo;
 import java.awt.Point;
 
 import Bex2DGameEngine.GameUtils.Vec2;

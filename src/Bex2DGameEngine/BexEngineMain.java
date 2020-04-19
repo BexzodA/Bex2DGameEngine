@@ -47,6 +47,7 @@ public class BexEngineMain {
 		gameLoop.go();
 	}
 	
+	@SuppressWarnings("unused")
 	private static void setFullScreen(GraphicsDevice gd) {
 		if(gd.isFullScreenSupported()) {
 			gd.setFullScreenWindow(window);
