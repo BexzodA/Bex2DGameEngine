@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import Bex2DGameEngine.GameObjects.Button;
 import Bex2DGameEngine.GameObjects.GameObject;
 
-public class GoHomeBoardGame {
+public class GameScreen {
 	
 	private int x = 400;
 	private int y = 300;
@@ -16,7 +16,7 @@ public class GoHomeBoardGame {
 	
 	private ArrayList<GameObject> gameObjs;
 	
-	public GoHomeBoardGame() {
+	public GameScreen() {
 		gameObjs = new ArrayList<GameObject>();
 		button = new Button(960 - 50, 540 - 50, 100, 100);
 		gameObjs.add(button);

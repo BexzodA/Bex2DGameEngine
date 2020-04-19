@@ -8,7 +8,7 @@ import java.awt.image.VolatileImage;
 public class Game {
 	
 	private Window window;
-	private GoHomeBoardGame goHome;
+	private GameScreen goHome;
 	private BufferStrategy bs;
 	
 	private VolatileImage frame;
@@ -18,7 +18,7 @@ public class Game {
 	
 	public Game(Window window) {
 		this.window = window; 
-		goHome = new GoHomeBoardGame();
+		goHome = new GameScreen();
 		frame = window.getVolatileImage();
 		windowTitle = window.getTitle();
 	}
