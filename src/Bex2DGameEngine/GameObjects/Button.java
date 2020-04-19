@@ -17,8 +17,6 @@ public class Button extends GameObject{
 	@Override
 	public void update(float dt) {
 		if(bounds.contains(Mouse.getPoint())) {
-			System.out.println(bounds);
-			System.out.println(Mouse.getPoint());
 			hoveringOver = true;
 			if(Mouse.isLeftPressed()) {
 				lpressed = true;
