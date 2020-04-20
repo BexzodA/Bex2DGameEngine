@@ -1,43 +1,19 @@
 package Bex2DGameEngine;
 
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import Bex2DGameEngine.GameObjects.Button;
 import Bex2DGameEngine.GameObjects.GameObject;
 
 public class GameScreen {
-	
-	private int x = 400;
-	private int y = 300;
-	
-	private float speed = 300.0f;
-	private GameObject button;
 	
 	private ArrayList<GameObject> gameObjs;
 	
 	public GameScreen() {
 		gameObjs = new ArrayList<GameObject>();
-		button = new Button(960 - 50, 540 - 50, 100, 100);
-		gameObjs.add(button);
+		gameObjs.add(new Bird());
 	}
 	
 	public void update(float dt) {
-		if(Keyboard.keyIsPressed(KeyEvent.VK_D)) {
-			x += speed * dt;
-		}
-		if(Keyboard.keyIsPressed(KeyEvent.VK_A)) {
-			x -= speed * dt;
-		}
-		if(Keyboard.keyIsPressed(KeyEvent.VK_W)) {
-			y -= speed * dt;
-		}
-		if(Keyboard.keyIsPressed(KeyEvent.VK_S)) {
-			y += speed * dt;
-		}
-		if(Keyboard.keyIsPressed(KeyEvent.VK_ESCAPE)) {
-			System.exit(0);
-		}
 		gameObjs.forEach(
 			(GameObject obj)->{
 				obj.update(dt);
@@ -46,7 +22,6 @@ public class GameScreen {
 	}
 	
 	public void draw(Graphics2D gfx) {
-		gfx.drawString("test", x, y);
 		gameObjs.forEach(
 			(GameObject obj)->{
 				obj.draw(gfx);
@@ -54,12 +29,19 @@ public class GameScreen {
 		);
 	}
 	
+	/**
+	 * Called if the window gets resized,
+	 * The method will call the resize method of GameObject,
+	 * which will resize and relocate its self at a appropriate position.
+	 * See {@link Bex2DGameEngine.GameObjects.GameObject #resize() GameObject.resize()}
+	 * for how the GameObject is resized.
+	 */
 	public void resizeObjects() {
 		gameObjs.forEach(
-				(GameObject obj)->{
-					obj.resize();
-				}
-			);
+			(GameObject obj)->{
+				obj.resize();
+			}
+		);
 	}
 	
 }
