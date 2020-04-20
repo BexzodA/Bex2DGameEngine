@@ -1,7 +1,9 @@
 package Bex2DGameEngine;
 
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
+
 import Bex2DGameEngine.GameObjects.GameObject;
 
 public class GameScreen {
@@ -24,7 +26,9 @@ public class GameScreen {
 	public void draw(Graphics2D gfx) {
 		gameObjs.forEach(
 			(GameObject obj)->{
+				AffineTransform original = gfx.getTransform();
 				obj.draw(gfx);
+				gfx.setTransform(original);
 			}
 		);
 	}
