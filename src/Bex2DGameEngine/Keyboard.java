@@ -3,12 +3,11 @@ package Bex2DGameEngine;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
 
 public class Keyboard {
 	
-	private static Set<Integer> keysPressed = new HashSet<Integer>();
+	private static HashMap<Integer, KeyEvent> keysPressed = new HashMap<Integer, KeyEvent>();
 	private static boolean initialized = false;
 	
 	public static void init() {
@@ -18,7 +17,8 @@ public class Keyboard {
 				@Override
 				public boolean dispatchKeyEvent(KeyEvent e) {
 					if(e.getID() == KeyEvent.KEY_PRESSED) {
-						keysPressed.add(e.getKeyCode());
+						if(!keysPressed.containsKey(e.getKeyCode()))
+							keysPressed.put(e.getKeyCode(), e);
 					}
 					if(e.getID() == KeyEvent.KEY_RELEASED) {
 						keysPressed.remove(e.getKeyCode());
@@ -35,7 +35,20 @@ public class Keyboard {
 		if(!initialized) {
 			init();
 		}
-		return keysPressed.contains(key);
+		return keysPressed.containsKey(key);
+	}
+	
+	public static boolean keyTyped(int key) {
+       	if(!initialized) {
+			init();
+		}
+       	if(keysPressed.containsKey(key)) {
+       		KeyEvent event = keysPressed.get(key);
+       		long now = System.currentTimeMillis();
+       		long when = event.getWhen();
+       		return when > now - 8;
+       	}
+       	return false;
 	}
 	
 }
