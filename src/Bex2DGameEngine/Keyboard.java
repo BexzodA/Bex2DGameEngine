@@ -17,6 +17,8 @@ public class Keyboard {
 				@Override
 				public boolean dispatchKeyEvent(KeyEvent e) {
 					if(e.getID() == KeyEvent.KEY_PRESSED) {
+						if(e.getKeyCode() == KeyEvent.VK_F4 && e.isAltDown())
+							System.exit(0);
 						if(!keysPressed.containsKey(e.getKeyCode()))
 							keysPressed.put(e.getKeyCode(), e);
 					}
