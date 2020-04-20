@@ -48,7 +48,7 @@ public class Keyboard {
        		KeyEvent event = keysPressed.get(key);
        		long now = System.currentTimeMillis();
        		long when = event.getWhen();
-       		return when > now - 8;
+       		return when > now - GameLoop.getDeltaTime() * 1000 * 1.5;
        	}
        	return false;
 	}
