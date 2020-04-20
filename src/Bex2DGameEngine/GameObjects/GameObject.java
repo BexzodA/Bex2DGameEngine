@@ -30,7 +30,7 @@ public abstract class GameObject {
 	protected GameObject(Vec2 pos) {
 		this.x = pos.x;
 		this.y = pos.y;
-
+		
 		this.pos = pos;
 		
 		xRatio = (float)pos.x / Window.getScreenWidth();
@@ -50,7 +50,7 @@ public abstract class GameObject {
 		this.y = bounds.y;
 		this.width = bounds.width;
 		this.height = bounds.height;
-		
+
 		this.pos = new Vec2(x, y);
 		this.bounds = bounds;
 		
@@ -65,11 +65,14 @@ public abstract class GameObject {
 	public abstract void draw(Graphics2D gfx);
 	
 	/**
-	 * Resizes this object to fit the current screen ratio
+	 * Resizes this object to fit the current screen.
+	 * This is done by setting x, y, width and height
+	 * to the percent of the screen that they used to
+	 * occupy before the resize.
 	 */
 	public void resize() {
-		x = (int)(xRatio * Window.getScreenWidth());
-		y = (int)(yRatio * Window.getScreenHeight());
+		x = (int)((float)x / Window.getOldScreenWidth() * Window.getScreenWidth());
+		y = (int)((float)y / Window.getOldScreenHeight() * Window.getScreenHeight());
 		width = (int)(widthRatio * Window.getScreenWidth());
 		height = (int)(heightRatio * Window.getScreenHeight());		
 		
@@ -94,11 +97,11 @@ public abstract class GameObject {
 	}
 
 	public Rectangle getBounds() {
-		return new Rectangle(bounds);
+		return new Rectangle(x, y, width, height);
 	}
 
 	public Vec2 getPos() {
-		return new Vec2(pos);
+		return new Vec2(x, y);
 	}
 	
 }

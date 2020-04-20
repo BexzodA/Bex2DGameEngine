@@ -24,6 +24,9 @@ public class Window extends JFrame {
 	private static int screenWidth;
 	private static int screenHeight;
 	
+	private static int oldWidth;
+	private static int oldHeight;
+	
 	private GraphicsConfiguration config;
 	
 	private static final int NUMBER_OF_BUFFERS = 3;
@@ -79,6 +82,8 @@ public class Window extends JFrame {
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
+				oldWidth = screenWidth;
+				oldHeight = screenHeight;
 				screenWidth = getWidth();
 				screenHeight = getHeight();
 				Game.resize();
@@ -152,6 +157,14 @@ public class Window extends JFrame {
 	
 	public static int getScreenHeight() {
 		return screenHeight;
+	}
+	
+	public static int getOldScreenWidth() {
+		return oldWidth;
+	}
+	
+	public static int getOldScreenHeight() {
+		return oldHeight;
 	}
 	
 	public BufferStrategy getBufferStrat() {
